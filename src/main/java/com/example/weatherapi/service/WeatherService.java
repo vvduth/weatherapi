@@ -19,4 +19,19 @@ public class WeatherService {
     public List<WeatherPerHours> getWeathers() {
         return weatherRepository.findAll();
     }
+
+    public List<WeatherPerHours> filterWeather(String query) {
+        List<WeatherPerHours> filteredWeather = weatherRepository.loadedWeather(query);
+        return  filteredWeather ;
+    }
+
+    public List<WeatherPerHours> getMaxTempInDay(String day, String month, String year) {
+        List<WeatherPerHours> filteredWeather = weatherRepository.maxTempInDay(day, month, year);
+        return  filteredWeather ;
+    }
+
+    public List<WeatherPerHours> getMinTempInDay(String day, String month, String year ) {
+        List<WeatherPerHours> filteredWeater = weatherRepository.minTempInDay(day, month, year);
+        return filteredWeater ;
+    }
 }

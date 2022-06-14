@@ -6,8 +6,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
 import java.sql.Time;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.EmptyStackException;
 import java.util.List;
 
 public class CSVHelper {
@@ -27,15 +29,22 @@ public class CSVHelper {
             Iterable<CSVRecord> csvRecords = csvParser.getRecords();
 
             for (CSVRecord csvRecord : csvRecords) {
-                WeatherImport weatherImportsingle = new WeatherImport(
-                        Integer.parseInt(csvRecord.get("d")),
-                        Integer.parseInt(csvRecord.get("Year")),
-                        Integer.parseInt(csvRecord.get("m")),
-                        csvRecord.get("Time"),
-                        Double.parseDouble(csvRecord.get("Air temperature (degC)"))
-                );
+                WeatherImport weatherImportsingle;
+                try {
+                     weatherImportsingle = new WeatherImport(
+                            Integer.parseInt(csvRecord.get("d")),
+                            Integer.parseInt(csvRecord.get("Year")),
+                            Integer.parseInt(csvRecord.get("m")),
+                            csvRecord.get("Time"),
+                            Double.parseDouble(csvRecord.get("Air temperature (degC)"))
 
-                weatherimports.add(weatherImportsingle);
+                    );
+                    weatherimports.add(weatherImportsingle);
+                } catch (NumberFormatException e){
+
+                    continue;
+                }
+
             }
             return weatherimports;
         } catch (IOException e) {
