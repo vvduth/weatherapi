@@ -48,11 +48,11 @@ public class WeatherImport {
         this.month = month;
     }
 
-    public Time getTime() {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(Time time) {
+    public void setTime(String time) {
         this.time = time;
     }
 
@@ -64,7 +64,7 @@ public class WeatherImport {
         this.air_temp = air_temp;
     }
 
-    public WeatherImport(int day, int year, int month, Time time, double air_temp) {
+    public WeatherImport(int day, int year, int month, String time, double air_temp) {
         this.day = day;
         this.year = year;
         this.month = month;
@@ -75,7 +75,7 @@ public class WeatherImport {
     @Column(name="month")
     private int month;
 
-    public WeatherImport(int id, int day, int year, int month, Time time, double air_temp) {
+    public WeatherImport(int id, int day, int year, int month, String time, double air_temp) {
         this.id = id;
         this.day = day;
         this.year = year;
@@ -84,8 +84,12 @@ public class WeatherImport {
         this.air_temp = air_temp;
     }
 
+    public WeatherImport() {
+
+    }
+
     @Column(name="time")
-    private Time time;
+    private String time;
 
 
     @Column(name="air_temp")

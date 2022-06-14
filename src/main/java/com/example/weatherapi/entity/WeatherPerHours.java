@@ -20,7 +20,7 @@ public class WeatherPerHours {
 
     private double air_temp ;
     private int year , month, day ;
-    private Time time ;
+    private String time ;
 
 
 

@@ -31,7 +31,7 @@ public class CSVHelper {
                         Integer.parseInt(csvRecord.get("d")),
                         Integer.parseInt(csvRecord.get("Year")),
                         Integer.parseInt(csvRecord.get("m")),
-                        Time.valueOf(csvRecord.get("Time")),
+                        csvRecord.get("Time"),
                         Double.parseDouble(csvRecord.get("Air temperature (degC)"))
                 );
 
