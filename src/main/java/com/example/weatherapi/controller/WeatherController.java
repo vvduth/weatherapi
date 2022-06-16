@@ -24,6 +24,14 @@ public class WeatherController {
         return service.getWeathers();
     }
 
+    @GetMapping("/all2")
+    public ResponseEntity<List<WeatherPerHours>> pagination(@RequestParam(defaultValue = "0") Integer pageNo,
+                                                            @RequestParam(defaultValue = "10") Integer pageSize,
+                                                            @RequestParam(defaultValue = "id") String sortBy) {
+        return  ResponseEntity.ok(service.pagination(pageNo, pageSize,sortBy));
+    }
+
+
     @GetMapping("/year")
     public ResponseEntity<List<WeatherPerHours>> filterWeather(@RequestParam("query") String query) {
         return  ResponseEntity.ok(service.filterWeather(query));
@@ -35,7 +43,15 @@ public class WeatherController {
         String month = requestParams.get("month");
         String year = requestParams.get("year");
 
-        return  ResponseEntity.ok(service.getMaxTempInDay(day, month, year));
+        if (day != null && month !=null && year != null ) {
+            return  ResponseEntity.ok(service.getMaxTempInDay(day, month, year));
+        } else if  (day == null && month !=null && year != null) {
+            return  ResponseEntity.ok(service.getMaxTempInMonth(month, year));
+        } else if  (day == null && month ==null && year != null) {
+            return  ResponseEntity.ok(service.getMaxTempInYear(year));
+        } else {
+            return null;
+        }
     }
 
     @GetMapping("/min/date")
@@ -43,7 +59,32 @@ public class WeatherController {
         String day = requestParams.get("day");
         String month = requestParams.get("month");
         String year = requestParams.get("year");
+        if (day != null && month !=null && year != null ) {
+            return  ResponseEntity.ok(service.getMinTempInDay(day, month, year));
+        } else if  (day == null && month !=null && year != null) {
+            return  ResponseEntity.ok(service.getMinTempInMonth(month, year));
+        } else if  (day == null && month ==null && year != null) {
+            return  ResponseEntity.ok(service.getMinTempInYear(year));
+        } else {
+            return null;
+        }
 
-        return  ResponseEntity.ok(service.getMinTempInDay(day, month, year));
+    }
+
+    @GetMapping("/avg/date")
+    public ResponseEntity<Double> avgTempInday(@RequestParam Map<String, String> requestParams) {
+        String day = requestParams.get("day");
+        String month = requestParams.get("month");
+        String year = requestParams.get("year");
+
+        if (day != null && month !=null && year != null ) {
+            return  ResponseEntity.ok(service.getAvgTempInDay(day, month, year));
+        } else if  (day == null && month !=null && year != null) {
+            return  ResponseEntity.ok(service.getAvgTempInMonth(month, year));
+        } else if  (day == null && month ==null && year != null) {
+            return  ResponseEntity.ok(service.getAvgTempInYear(year));
+        } else {
+            return null;
+        }
     }
 }
