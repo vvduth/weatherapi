@@ -72,6 +72,45 @@ public class WeatherService {
         return filteredWeater ;
     }
 
+    public List<WeatherPerHours> getListAvgBasedOnDay(  ) {
+        List<WeatherPerHours> filteredWeater = weatherRepository.avgBasedOnDay();
+        return filteredWeater ;
+    }
+    public List<WeatherPerHours> getListMAXBasedOnDay(  ) {
+        List<WeatherPerHours> filteredWeater = weatherRepository.MAXBasedOnDay();
+        return filteredWeater ;
+    }
+    public List<WeatherPerHours> getListMINBasedOnDay(  ) {
+        List<WeatherPerHours> filteredWeater = weatherRepository.MINBasedOnDay();
+        return filteredWeater ;
+    }
+
+    public List<WeatherPerHours> getListAvgBasedOnMonth(  ) {
+        List<WeatherPerHours> filteredWeater = weatherRepository.avgBasedOnMonth();
+        return filteredWeater ;
+    }
+    public List<WeatherPerHours> getListMAXBasedOnMonth(  ) {
+        List<WeatherPerHours> filteredWeater = weatherRepository.MAXBasedOnMonth();
+        return filteredWeater ;
+    }
+    public List<WeatherPerHours> getListMINBasedOnMonth(  ) {
+        List<WeatherPerHours> filteredWeater = weatherRepository.MINBasedOnMonth();
+        return filteredWeater ;
+    }
+
+    public List<WeatherPerHours> getListAvgBasedOnYear(  ) {
+        List<WeatherPerHours> filteredWeater = weatherRepository.avgBasedOnYear();
+        return filteredWeater ;
+    }
+    public List<WeatherPerHours> getListMAXBasedOnYear(  ) {
+        List<WeatherPerHours> filteredWeater = weatherRepository.MAXBasedOnYear();
+        return filteredWeater ;
+    }
+    public List<WeatherPerHours> getListMINBasedOnYear(  ) {
+        List<WeatherPerHours> filteredWeater = weatherRepository.MINBasedOnYear();
+        return filteredWeater ;
+    }
+
     public double getAvgTempInDay(String day, String month, String year) {
         double avgTemp = weatherRepository.avgTempInDay(day, month, year);
         return  avgTemp ;

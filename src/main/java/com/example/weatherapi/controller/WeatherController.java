@@ -4,15 +4,13 @@ import com.example.weatherapi.entity.WeatherPerHours;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.MultiValueMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import com.example.weatherapi.service.WeatherService;
 
 import java.util.List;
 import java.util.Map;
 
+@CrossOrigin("http://localhost:3000")
 @RestController
 @RequestMapping("/api/weather")
 public class WeatherController {
@@ -35,6 +33,51 @@ public class WeatherController {
     @GetMapping("/year")
     public ResponseEntity<List<WeatherPerHours>> filterWeather(@RequestParam("query") String query) {
         return  ResponseEntity.ok(service.filterWeather(query));
+    }
+
+    @GetMapping("/list/avg/day")
+    public List<WeatherPerHours> listAvgByDay() {
+        return service.getListAvgBasedOnDay();
+    }
+
+    @GetMapping("/list/max/day")
+    public List<WeatherPerHours> listMAXByDay() {
+        return service.getListMAXBasedOnDay();
+    }
+
+    @GetMapping("/list/min/day")
+    public List<WeatherPerHours> listMINByDay() {
+        return service.getListMINBasedOnDay();
+    }
+
+    @GetMapping("/list/avg/month")
+    public List<WeatherPerHours> listAvgByMonth() {
+        return service.getListAvgBasedOnMonth();
+    }
+
+    @GetMapping("/list/max/month")
+    public List<WeatherPerHours> listMAXByMonth() {
+        return service.getListMAXBasedOnMonth();
+    }
+
+    @GetMapping("/list/min/month")
+    public List<WeatherPerHours> listMINByMonth() {
+        return service.getListMINBasedOnMonth();
+    }
+
+    @GetMapping("/list/avg/year")
+    public List<WeatherPerHours> listAvgByYear() {
+        return service.getListAvgBasedOnYear();
+    }
+
+    @GetMapping("/list/max/year")
+    public List<WeatherPerHours> listMAXByYear() {
+        return service.getListMAXBasedOnYear();
+    }
+
+    @GetMapping("/list/min/year")
+    public List<WeatherPerHours> listMINByYear() {
+        return service.getListMINBasedOnYear();
     }
 
     @GetMapping("/max/date")

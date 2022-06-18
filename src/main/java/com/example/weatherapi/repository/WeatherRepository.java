@@ -49,5 +49,34 @@ public interface WeatherRepository extends PagingAndSortingRepository<WeatherPer
     @Query(value = "SELECT AVG(air_temp) FROM weather WHERE year=:year ;", nativeQuery = true)
     double avgTempInYear (String year);
 
+    // List all avg value in the day
+    @Query(value = "SELECT id, month, year,day,  AVG(air_temp) as 'air_temp', time FROM weather GROUP BY month,year,day;", nativeQuery = true)
+    List<WeatherPerHours> avgBasedOnDay();
+
+    @Query(value = "SELECT id, month, year, day, AVG(air_temp) as 'air_temp', time FROM weather GROUP BY month,year;", nativeQuery = true)
+    List<WeatherPerHours> avgBasedOnMonth();
+
+    @Query(value = "SELECT id,  year, month, day , AVG(air_temp) as 'air_temp', time FROM weather GROUP BY year;", nativeQuery = true)
+    List<WeatherPerHours> avgBasedOnYear();
+
+    @Query(value = "SELECT id, month, year,day,  MAX(air_temp) as 'air_temp', time FROM weather GROUP BY month,year,day;", nativeQuery = true)
+    List<WeatherPerHours> MAXBasedOnDay();
+
+    @Query(value = "SELECT id, month, year,day,   MAX(air_temp) as 'air_temp', time  FROM weather GROUP BY month,year;", nativeQuery = true)
+    List<WeatherPerHours> MAXBasedOnMonth();
+
+    @Query(value = "SELECT id,  year ,month, day, MAX(air_temp) as 'air_temp', time FROM weather GROUP BY year;", nativeQuery = true)
+    List<WeatherPerHours> MAXBasedOnYear();
+
+    @Query(value = "SELECT id, month, year,day,  MIN(air_temp) as 'air_temp', time FROM weather GROUP BY month,year,day;", nativeQuery = true)
+    List<WeatherPerHours> MINBasedOnDay();
+
+    @Query(value = "SELECT id, month, year, day,  MIN(air_temp) as 'air_temp', time FROM weather GROUP BY month,year;", nativeQuery = true)
+    List<WeatherPerHours> MINBasedOnMonth();
+
+    @Query(value = "SELECT id, day, month,  year , MIN(air_temp) as 'air_temp', time FROM weather GROUP BY year;", nativeQuery = true)
+    List<WeatherPerHours> MINBasedOnYear();
+
+
 
 }
