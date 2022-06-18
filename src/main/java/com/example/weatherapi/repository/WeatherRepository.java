@@ -2,6 +2,7 @@ package com.example.weatherapi.repository;
 
 import com.example.weatherapi.entity.WeatherPerHours;
 
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
@@ -52,6 +53,15 @@ public interface WeatherRepository extends PagingAndSortingRepository<WeatherPer
     // List all avg value in the day
     @Query(value = "SELECT id, month, year,day,  AVG(air_temp) as 'air_temp', time FROM weather GROUP BY month,year,day;", nativeQuery = true)
     List<WeatherPerHours> avgBasedOnDay();
+
+    @Query(value = "SELECT id, month, year,day,  AVG(air_temp) as 'air_temp', time FROM weather GROUP BY month,year,day LIMIT :start , :end ;", nativeQuery = true)
+    List<WeatherPerHours> avgBasedOnDayPagination(int start, int end);
+
+    @Query(value = "SELECT id, month, year,day,  MAX(air_temp) as 'air_temp', time FROM weather GROUP BY month,year,day LIMIT :start , :end ;", nativeQuery = true)
+    List<WeatherPerHours> maxBasedOnDayPagination(int start, int end);
+
+    @Query(value = "SELECT id, month, year,day,  MIN(air_temp) as 'air_temp', time FROM weather GROUP BY month,year,day LIMIT :start , :end ;", nativeQuery = true)
+    List<WeatherPerHours> minBasedOnDayPagination(int start, int end);
 
     @Query(value = "SELECT id, month, year, day, AVG(air_temp) as 'air_temp', time FROM weather GROUP BY month,year;", nativeQuery = true)
     List<WeatherPerHours> avgBasedOnMonth();

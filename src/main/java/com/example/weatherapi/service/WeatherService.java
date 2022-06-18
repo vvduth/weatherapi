@@ -1,6 +1,7 @@
 package com.example.weatherapi.service;
 
 import com.example.weatherapi.entity.WeatherPerHours;
+import com.example.weatherapi.repository.Interger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -38,6 +39,7 @@ public class WeatherService {
             return null ;
         }
     }
+
     public List<WeatherPerHours> filterWeather(String query) {
         List<WeatherPerHours> filteredWeather = weatherRepository.loadedWeather(query);
         return  filteredWeather ;
@@ -74,6 +76,33 @@ public class WeatherService {
 
     public List<WeatherPerHours> getListAvgBasedOnDay(  ) {
         List<WeatherPerHours> filteredWeater = weatherRepository.avgBasedOnDay();
+        return filteredWeater ;
+    }
+
+    public List<WeatherPerHours> getListAvgBasedOnDayPagination( Integer page ) {
+        int startInt = page * 10 ;
+        int endInt = page * 10 + 9 ;
+        String start = String.valueOf(startInt);
+        String end  = String.valueOf(endInt);
+        List<WeatherPerHours> filteredWeater = weatherRepository.avgBasedOnDayPagination(startInt, endInt);
+        return filteredWeater ;
+    }
+
+    public List<WeatherPerHours> getListMaxBasedOnDayPagination( Integer page ) {
+        int startInt = page * 10 ;
+        int endInt = page * 10 + 9 ;
+        String start = String.valueOf(startInt);
+        String end  = String.valueOf(endInt);
+        List<WeatherPerHours> filteredWeater = weatherRepository.maxBasedOnDayPagination(startInt, endInt);
+        return filteredWeater ;
+    }
+
+    public List<WeatherPerHours> getListMinBasedOnDayPagination( Integer page ) {
+        int startInt = page * 10 ;
+        int endInt = page * 10 + 9 ;
+        String start = String.valueOf(startInt);
+        String end  = String.valueOf(endInt);
+        List<WeatherPerHours> filteredWeater = weatherRepository.minBasedOnDayPagination(startInt, endInt);
         return filteredWeater ;
     }
     public List<WeatherPerHours> getListMAXBasedOnDay(  ) {

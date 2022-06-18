@@ -30,24 +30,25 @@ public class WeatherController {
     }
 
 
+
     @GetMapping("/year")
     public ResponseEntity<List<WeatherPerHours>> filterWeather(@RequestParam("query") String query) {
         return  ResponseEntity.ok(service.filterWeather(query));
     }
 
     @GetMapping("/list/avg/day")
-    public List<WeatherPerHours> listAvgByDay() {
-        return service.getListAvgBasedOnDay();
+    public ResponseEntity<List<WeatherPerHours>> avgPagination(@RequestParam(defaultValue = "0") Integer page) {
+        return  ResponseEntity.ok(service.getListAvgBasedOnDayPagination(page));
     }
 
     @GetMapping("/list/max/day")
-    public List<WeatherPerHours> listMAXByDay() {
-        return service.getListMAXBasedOnDay();
+    public ResponseEntity<List<WeatherPerHours>> maxPagination(@RequestParam(defaultValue = "0") Integer page) {
+        return  ResponseEntity.ok(service.getListMaxBasedOnDayPagination(page));
     }
 
     @GetMapping("/list/min/day")
-    public List<WeatherPerHours> listMINByDay() {
-        return service.getListMINBasedOnDay();
+    public ResponseEntity<List<WeatherPerHours>> minPagination(@RequestParam(defaultValue = "0") Integer page) {
+        return  ResponseEntity.ok(service.getListMinBasedOnDayPagination(page));
     }
 
     @GetMapping("/list/avg/month")
