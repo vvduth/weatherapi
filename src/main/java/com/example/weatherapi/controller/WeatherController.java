@@ -36,6 +36,7 @@ public class WeatherController {
         return  ResponseEntity.ok(service.filterWeather(query));
     }
 
+    @CrossOrigin("http://localhost:3000")
     @GetMapping("/list/avg/day")
     public ResponseEntity<List<WeatherPerHours>> avgPagination(@RequestParam(defaultValue = "0") Integer page) {
         return  ResponseEntity.ok(service.getListAvgBasedOnDayPagination(page));

@@ -81,7 +81,7 @@ public class WeatherService {
 
     public List<WeatherPerHours> getListAvgBasedOnDayPagination( Integer page ) {
         int startInt = page * 10 ;
-        int endInt = page * 10 + 9 ;
+        int endInt = 10 ;
         String start = String.valueOf(startInt);
         String end  = String.valueOf(endInt);
         List<WeatherPerHours> filteredWeater = weatherRepository.avgBasedOnDayPagination(startInt, endInt);
@@ -90,7 +90,7 @@ public class WeatherService {
 
     public List<WeatherPerHours> getListMaxBasedOnDayPagination( Integer page ) {
         int startInt = page * 10 ;
-        int endInt = page * 10 + 9 ;
+        int endInt = 10 ;
         String start = String.valueOf(startInt);
         String end  = String.valueOf(endInt);
         List<WeatherPerHours> filteredWeater = weatherRepository.maxBasedOnDayPagination(startInt, endInt);
@@ -99,7 +99,7 @@ public class WeatherService {
 
     public List<WeatherPerHours> getListMinBasedOnDayPagination( Integer page ) {
         int startInt = page * 10 ;
-        int endInt = page * 10 + 9 ;
+        int endInt = 10 ;
         String start = String.valueOf(startInt);
         String end  = String.valueOf(endInt);
         List<WeatherPerHours> filteredWeater = weatherRepository.minBasedOnDayPagination(startInt, endInt);
