@@ -40,16 +40,4 @@ public class CSVController {
         message = "Please upload a csv file!";
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseMessage(message));
     }
-    @GetMapping("/tutorials")
-    public ResponseEntity<List<WeatherImport>> getAllTutorials() {
-        try {
-            List<WeatherImport> weatherImports = fileService.getAllTutorials();
-            if (weatherImports.isEmpty()) {
-                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-            }
-            return new ResponseEntity<>(weatherImports, HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
 }
